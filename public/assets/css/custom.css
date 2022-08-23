@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'PKLampang';
+    src: url('../font/PKLampangMedium.ttf');
+}
+
+body{
+    /* font-family: 'Krub', sans-serif; */
+    
+    font-family: 'PKLampang', sans-serif;
+  
+}
+.mynav{
+    background-color: blueviolet;
+}
