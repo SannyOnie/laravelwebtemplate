@@ -5,7 +5,7 @@
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     
-    <div class="wrapper">
+    <div class="wrapper" style="overflow: auto">
           <!-- Preloader -->
                 <div class="preloader flex-column justify-content-center align-items-center">
                     <img class="animation__shake" src="{{asset('assets/backend/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
@@ -23,7 +23,8 @@
             @include('backend.includes.sidebar')
 
           </aside>
-          <div class="content-wrapper">
+
+          <div class="content-wrapper" style="overflow: auto">
                 @yield('content')
             </div>
 
