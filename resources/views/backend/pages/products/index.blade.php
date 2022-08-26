@@ -58,7 +58,7 @@
                         <td>{{$product->id}}</td>
                         <td>
                             <div class="image">
-                                <img src="{{$product->image}}" width="50" class="direct-chat-img" alt="User Image">
+                                <img src="{{asset('assets/backend/images/products')}}/{{ $product->image }}" width="50" class="direct-chat-img" alt="User Image">
                             </div>
                         </td>   
                         <td>{{$product->name}}</td>
@@ -135,13 +135,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('assets/backend/js/demo.js')}}"></script>
 <!-- Page specific script -->
+<!-- Page specific script -->
 <script>
   $(function () {
-    // $("#example1").DataTable({
-    //   "responsive": true, "lengthChange": false, "autoWidth": false,
-    //   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-   
+
     $('#example2').DataTable({
       "paging": true,
       "pageLength":25,
@@ -149,10 +146,80 @@
       "searching": true,
       "ordering": true,
       "info": true,
-      "autoWidth": true,
+      "autoWidth": false,
       "responsive": true,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": [
+        {
+            extend: 'copyHtml5',
+            exportOptions: {
+                columns: [ 0, 1, 2, 3, 5, 6 ]
+            }
+        },
+        {
+            extend: 'csvHtml5',
+            exportOptions: {
+                columns: [ 0, 1, 2, 3, 5, 6 ]
+            }
+        },
+        // {
+        //     extend: 'excelHtml5',
+        //     exportOptions: {
+        //         columns: [ 0, 1, 2, 3, 5, 6 ]
+        //     }
+        // },
+        {
+            extend: 'pdfHtml5',
+            exportOptions: {
+                columns: [ 0, 1, 2, 3, 5, 6 ]
+            }
+        },
+        {
+            extend: 'print',
+            exportOptions: {
+                columns: [ 0, 1, 2, 3, 5, 6 ]
+            }
+        },
+        ,"colvis",
+      ],
+      "columnDefs": [
+      {
+        "targets": [4,7],
+        "orderable": false
+      }],
+      "language": {
+        "info": "แสดง START ถึง END จาก TOTAL แถว",
+        "infoEmpty": "แสดงทั้งหมด 0 to 0 of 0 รายการ",
+        "zeroRecords": "ไม่พบข้อมูล",
+        "search": "ค้นหา:",
+        "paginate": {
+          "first":      "หน้าแรก",
+          "last":       "หน้าสุดท้าย",
+          "next":       "ถัดไป",
+          "previous":   "ก่อนหน้า"
+        },
+        "buttons": {
+            "collection": "ชุดข้อมูล",
+            "colvis": "การมองเห็นคอลัมน์",
+            "colvisRestore": "เรียกคืนการมองเห็น",
+            "copy": "คัดลอก",
+            "copyKeys": "กดปุ่ม Ctrl หรือ Command + C เพื่อคัดลอกข้อมูลบนตารางไปยัง Clipboard ที่เครื่องของคุณ",
+            "copySuccess": {
+                "_": "คัดลอกช้อมูลแล้ว จำนวน %d แถว",
+                "1": "คัดลอกข้อมูลแล้ว จำนวน 1 แถว"
+            },
+            "copyTitle": "คัดลอกไปยังคลิปบอร์ด",
+            "csv": "CSV",
+            "excel": "Excel",
+            "pageLength": {
+                "_": "แสดงข้อมูล %d แถว",
+                "-1": "แสดงข้อมูลทั้งหมด"
+            },
+            "pdf": "PDF",
+            "print": "สั่งพิมพ์"
+        },
+      }
     }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+
   });
 </script>
 @endpush
